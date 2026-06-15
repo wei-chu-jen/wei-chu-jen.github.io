@@ -84,6 +84,27 @@
     margin-left: 10px;
 }
 .secret-trigger:hover { color: #3498db; }
+        /* 新增針對三個謎題的排版 */
+.puzzle-group {
+    text-align: left;
+    margin-bottom: 15px;
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border-left: 3px solid #3498db;
+}
+.puzzle-hint {
+    font-size: 0.9em;
+    color: #444;
+    margin: 0 0 8px 0;
+    font-weight: 500;
+}
+.puzzle-group input {
+    width: calc(100% - 22px); /* 扣除 padding 的寬度 */
+    margin: 0;
+    padding: 8px 10px;
+}
+.modal-content { max-width: 450px; } /* 稍微加寬視窗以容納題目 */
     </style>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -136,51 +157,75 @@
     <div id="puzzleModal" class="modal-overlay">
     <div class="modal-content">
         <h3>Gateway to the Unknown</h3>
-        <p>請輸入通關密語：</p>
-        <p style="font-size: 0.9em; color: #666;">Hint: System stability changes when eigenvalues cross the imaginary axis.</p>
+        <p style="margin-bottom: 20px;">留給讀者的習題</p>
         
-        <input type="text" id="puzzleInput" placeholder="Enter the answer...">
+        <div class="puzzle-group">
+            <p class="puzzle-hint">我主推的Vtuber是誰？</p>
+            <p style="font-size: 0.9em; color: #666;">Hint : 子午計畫旗下藝人之一</p>
+            <input type="text" id="puzzleInput1" placeholder="Enter answer 1...">
+        </div>
+
+        <div class="puzzle-group">
+            <p class="puzzle-hint">我家有幾隻貓？</p>
+            <input type="text" id="puzzleInput2" placeholder="Enter answer 2...">
+        </div>
+
+        <div class="puzzle-group">
+            <p class="puzzle-hint">我的生日是？</p>
+            <p style="font-size: 0.9em; color: #666;">Hint: XXXXYYZZ </p>
+            <input type="text" id="puzzleInput3" placeholder="Enter answer 3...">
+        </div>
         
-        <div class="modal-buttons">
+        <div class="modal-buttons" style="margin-top: 20px;">
             <button onclick="checkPuzzle()" class="btn-submit">Submit</button>
             <button onclick="closePuzzle()" class="btn-close">Close</button>
         </div>
-        <p id="errorMessage">答案錯誤，通道依然封閉。</p>
+        <p id="errorMessage">看來注意力不夠驚人呢。</p>
     </div>
 </div>
 
 <script>
+    <script>
     function openPuzzle() {
         document.getElementById('puzzleModal').style.display = 'flex';
-        document.getElementById('puzzleInput').focus(); // 自動將游標移至輸入框
+        document.getElementById('puzzleInput1').focus(); // 自動將游標移至第一個輸入框
     }
 
     function closePuzzle() {
         document.getElementById('puzzleModal').style.display = 'none';
         document.getElementById('errorMessage').style.display = 'none';
-        document.getElementById('puzzleInput').value = '';
+        // 清空所有輸入框
+        document.getElementById('puzzleInput1').value = '';
+        document.getElementById('puzzleInput2').value = '';
+        document.getElementById('puzzleInput3').value = '';
     }
 
     function checkPuzzle() {
-        // 取得輸入值，轉為小寫並去除前後空白，避免使用者不小心多按空白鍵
-        const answer = document.getElementById('puzzleInput').value.trim().toLowerCase();
+        // 取得三個輸入值，轉為小寫並去除前後空白
+        const ans1 = document.getElementById('puzzleInput1').value.trim().toLowerCase();
+        const ans2 = document.getElementById('puzzleInput2').value.trim().toLowerCase();
+        const ans3 = document.getElementById('puzzleInput3').value.trim().toLowerCase();
         
-        // 設定你的通關密語，這裡以 bifurcation (分岔) 為例
-        if (answer === 'bifurcation') { 
-            // 答對了！跳轉到你的私人網頁
-            window.location.href = '你的隱藏網頁檔名.html'; 
+        // 設定三道謎題的解答
+        const correct1 = '澪Rei';
+        const correct2 = '6';
+        const correct3 = '20060316';
+
+        // 必須三個答案都正確才能通關
+        if (ans1 === correct1 && ans2 === correct2 && ans3 === correct3) { 
+            window.location.href = 'private.html'; 
         } else {
-            // 答錯了，顯示錯誤訊息
             document.getElementById('errorMessage').style.display = 'block';
         }
     }
 
-    // 讓使用者按 Enter 鍵也能送出答案
-    document.getElementById('puzzleInput').addEventListener('keypress', function(e) {
+    // 讓使用者在第三個輸入框按 Enter 鍵也能送出答案
+    document.getElementById('puzzleInput3').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             checkPuzzle();
         }
     });
+</script>
 </script>
 </body>
 </html>
