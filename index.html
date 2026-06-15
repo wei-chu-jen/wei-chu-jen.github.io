@@ -36,6 +36,54 @@
         .contact-info {
             margin-bottom: 40px;
         }
+        /* 隱藏的解謎視窗背景 */
+.modal-overlay {
+    display: none; 
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    background: rgba(0, 0, 0, 0.8); 
+    z-index: 1000; 
+    justify-content: center; 
+    align-items: center;
+}
+/* 解謎視窗本體 */
+.modal-content {
+    background: #fff; 
+    padding: 30px; 
+    border-radius: 8px; 
+    text-align: center; 
+    max-width: 400px; 
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.modal-content h3 { margin-top: 0; border-bottom: none; }
+.modal-content input {
+    padding: 10px; 
+    width: 80%; 
+    margin: 15px 0; 
+    border: 1px solid #ccc; 
+    border-radius: 4px;
+    font-size: 16px;
+}
+.modal-buttons button {
+    padding: 8px 20px; 
+    margin: 0 5px; 
+    cursor: pointer; 
+    border: none; 
+    border-radius: 4px;
+}
+.btn-submit { background: #3498db; color: white; }
+.btn-close { background: #eee; color: #333; }
+#errorMessage { color: #e74c3c; display: none; margin-top: 10px; font-size: 0.9em; }
+/* 隱藏的觸發按鈕 */
+.secret-trigger {
+    color: #ccc; /* 顏色調淡使其不明顯 */
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.secret-trigger:hover { color: #3498db; }
     </style>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -68,6 +116,7 @@
             <h2>經歷</h2>
             <ul>
                 <li><strong>2026 Spring 微分方程特論 教學助理</strong><br>
+                <li><strong>2026 Summer Vocation 微積分乙(一) 教學助理</strong><br>
                 <li><strong>2026 Fall 高等微積分(一) 教學助理</strong><br>
                 <li><strong>2026 Fall 微分方程導論 教學助理</strong><br>
                 <li><strong>2027 Spring 高等微積分(二) 教學助理</strong><br>
@@ -79,8 +128,59 @@
     </main>
 
     <footer>
-        <hr>
-        <p><small>&copy; 2026 Wei-Chu Jen. Hosted on GitHub Pages.</small></p>
-    </footer>
+    <hr>
+    <p><small>&copy; 2026 Wei-Chu Jen. Hosted on GitHub Pages.</small>
+       <a onclick="openPuzzle()" class="secret-trigger" title="?">$\pi$</a>
+    </p>
+</footer>
+    <div id="puzzleModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Gateway to the Unknown</h3>
+        <p>請輸入通關密語：</p>
+        <p style="font-size: 0.9em; color: #666;">Hint: System stability changes when eigenvalues cross the imaginary axis.</p>
+        
+        <input type="text" id="puzzleInput" placeholder="Enter the answer...">
+        
+        <div class="modal-buttons">
+            <button onclick="checkPuzzle()" class="btn-submit">Submit</button>
+            <button onclick="closePuzzle()" class="btn-close">Close</button>
+        </div>
+        <p id="errorMessage">答案錯誤，通道依然封閉。</p>
+    </div>
+</div>
+
+<script>
+    function openPuzzle() {
+        document.getElementById('puzzleModal').style.display = 'flex';
+        document.getElementById('puzzleInput').focus(); // 自動將游標移至輸入框
+    }
+
+    function closePuzzle() {
+        document.getElementById('puzzleModal').style.display = 'none';
+        document.getElementById('errorMessage').style.display = 'none';
+        document.getElementById('puzzleInput').value = '';
+    }
+
+    function checkPuzzle() {
+        // 取得輸入值，轉為小寫並去除前後空白，避免使用者不小心多按空白鍵
+        const answer = document.getElementById('puzzleInput').value.trim().toLowerCase();
+        
+        // 設定你的通關密語，這裡以 bifurcation (分岔) 為例
+        if (answer === 'bifurcation') { 
+            // 答對了！跳轉到你的私人網頁
+            window.location.href = '你的隱藏網頁檔名.html'; 
+        } else {
+            // 答錯了，顯示錯誤訊息
+            document.getElementById('errorMessage').style.display = 'block';
+        }
+    }
+
+    // 讓使用者按 Enter 鍵也能送出答案
+    document.getElementById('puzzleInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkPuzzle();
+        }
+    });
+</script>
 </body>
 </html>
