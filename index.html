@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wei-Chu Jen | Academic Portfolio</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+        }
+        h1, h2, h3 { color: #2c3e50; }
+        h1 { border-bottom: 3px solid #3498db; padding-bottom: 10px; margin-bottom: 5px;}
+        h2 { border-bottom: 1px solid #eee; margin-top: 40px; padding-bottom: 5px;}
+        a { color: #3498db; text-decoration: none; font-weight: 500;}
+        a:hover { text-decoration: underline; }
+        .section { margin-bottom: 30px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 12px; }
+        .math-example { 
+            background-color: #f8f9fa; 
+            padding: 20px; 
+            border-radius: 8px; 
+            border-left: 4px solid #3498db; 
+            margin-top: 20px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-top: 0;
+        }
+        .contact-info {
+            margin-bottom: 40px;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Wei-Chu Jen</h1>
+        <p class="subtitle">Mathematics Student</p>
+        <p class="contact-info">
+            Email: your.email@example.com | 
+            <a href="https://github.com/你的使用者名稱">GitHub</a>
+        </p>
+    </header>
+
+    <main>
+        <section class="section">
+            <h2>About Me</h2>
+            <p>Hello! I am a mathematics student with a strong passion for <strong>Differential Equations, Dynamical Systems, and Mathematical Biology</strong>. My academic interests focus primarily on stability analysis, limit cycles, and bifurcation theory. I also spend considerable time exploring Differential Geometry and Mathematical Physics.</p>
+        </section>
+
+        <section class="section">
+            <h2>Research & Projects</h2>
+            <ul>
+                <li><strong>NSTC Undergraduate Research Project (Preparation)</strong><br>
+                    Focusing on topics within Mathematical Biology, specifically exploring population modeling and biochemical kinetics (e.g., Rosenzweig-MacArthur models).</li>
+                <li><strong>Summer Workshop on Isomonodromy Method and Painlevé Equations</strong><br>
+                    Co-organized with the Department of Mathematics at National Taiwan Normal University (NTNU). Engaging with advanced topics in integrable systems.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Teaching & Mentoring</h2>
+            <ul>
+                <li><strong>Mathematics Teaching Assistant (TA)</strong><br>
+                    Assisting undergraduate students, managing course administration, and facilitating academic understanding.</li>
+                <li><strong>Organizer, Undergraduate Study Group</strong><br>
+                    Leading a study group focused on advanced integration techniques, progressing from Gaussian integrals and Feynman's method to stationary phase formulas.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Notes & Writing</h2>
+            <p>I extensively use LaTeX (with packages like <code>tikz</code> and <code>fontspec</code>) for typesetting my mathematical notes and research. Some of my recent documentation includes:</p>
+            <ul>
+                <li><strong>Differential Geometry:</strong> Comprehensive notes based on Manfredo P. do Carmo's textbook, covering Isometry, Conformal mapping, Christoffel symbols, and Gauss equations.</li>
+                <li><strong>Dynamical Systems:</strong> Local stability analysis of the Lorenz system, Lyapunov functions construction, and Hopf bifurcations.</li>
+            </ul>
+            
+            <div class="math-example">
+                <p><em>LaTeX Rendering Demo:</em> A typical Predator-Prey system with a Holling type II functional response can be described as:</p>
+                <p>$$ \frac{dx}{dt} = rx\left(1 - \frac{x}{K}\right) - \frac{cxy}{a+x} $$</p>
+                <p>$$ \frac{dy}{dt} = \frac{ecxy}{a+x} - dy $$</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <hr>
+        <p><small>&copy; 2026 Wei-Chu Jen. Hosted on GitHub Pages.</small></p>
+    </footer>
+</body>
+</html>
